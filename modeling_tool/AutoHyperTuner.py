@@ -18,7 +18,7 @@ sys.path.append(r"C:\Users\Heng2020\OneDrive\Python MyLib\Python MyLib 01\01 XgB
 
 import lib01_xgb as xgt
 import dataframe_short as ds
-import lib03_modeling as ml
+import modeling.modeling.utils_ml as ml
 
 @dataclass
 class AutoHyperTuner():

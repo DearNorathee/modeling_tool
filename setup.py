@@ -2,12 +2,12 @@ from setuptools import setup, find_packages
 
 setup(
     author= "Dear Norathee",
-    description="<add short describtion here>",
-    name="<package_name>",
+    description="the extension of sklearn to help the your modeling code becomes more concise with common useful tool for modeling",
+    name="modeling_tool",
     version="0.1.0",
     packages=find_packages(),
     license="MIT",
-    install_requires=["xlwings"],
+    install_requires=["scikit-learn"],
 
     # example
     # install_requires=['pandas>=1.0',

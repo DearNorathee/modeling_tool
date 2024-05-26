@@ -17,7 +17,7 @@ sys.path.append(r"C:\Users\Heng2020\OneDrive\Python MyLib\Python MyLib 01\03 Mod
 sys.path.append(r"C:\Users\Heng2020\OneDrive\Python MyLib\Python MyLib 01\01 XgBoost")
 
 import lib01_xgb as xgt
-import lib02_dataframe as ds
+import dataframe_short as ds
 import lib03_modeling as ml
 
 @dataclass

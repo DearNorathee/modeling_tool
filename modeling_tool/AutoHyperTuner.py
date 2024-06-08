@@ -12,13 +12,11 @@ import pandas as pd
 import time
 
 import sys
-sys.path.append(r"C:\Users\Heng2020\OneDrive\Python MyLib\Python MyLib 01\02 DataFrame")
-sys.path.append(r"C:\Users\Heng2020\OneDrive\Python MyLib\Python MyLib 01\03 Modeling")
-sys.path.append(r"C:\Users\Heng2020\OneDrive\Python MyLib\Python MyLib 01\01 XgBoost")
+
 
 import lib01_xgb as xgt
 import dataframe_short as ds
-import modeling.modeling.utils_ml as ml
+import modeling_tool.utils_ml as ml
 
 @dataclass
 class AutoHyperTuner():

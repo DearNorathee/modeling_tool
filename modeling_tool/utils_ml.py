@@ -16,8 +16,23 @@ import os
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
-
+import torch
 import warnings
+
+def check_gpu(verbose = 1):
+    
+    num_gpus = torch.cuda.device_count()
+
+    if num_gpus > 0:
+        if verbose >= 1:
+            print(f"Number of GPUs available: {num_gpus}")
+        for i in range(num_gpus):
+            if verbose >= 1:
+                print(f"GPU {i}: {torch.cuda.get_device_name(i)}")
+    else:
+        if verbose >= 1:
+            print("No GPU available.")
+    return num_gpus
 
 def create_result_df(X,y_actual,y_predict):
     df_result = X.copy()

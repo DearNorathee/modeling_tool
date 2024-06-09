@@ -5,6 +5,7 @@ modeling_tool/cant_use_.py
 modeling_tool/cant_use_ml.py
 modeling_tool/fix_bug_.py
 modeling_tool/fix_bug_ml.py
+modeling_tool/lib01_xgb.py
 modeling_tool/sandbox1_.py
 modeling_tool/utils_ml.py
 modeling_tool.egg-info/PKG-INFO

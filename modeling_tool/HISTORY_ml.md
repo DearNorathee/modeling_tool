@@ -1,8 +1,11 @@
 # History
 
 ## 0.1.1
+### Fixed 
+    - Fixed internal import issues
+## 0.1.0
 ### Immigrated
-- `regression.multiple_regression` module.
+    - `regression.multiple_regression` module.
 
 
 <!-- example -->

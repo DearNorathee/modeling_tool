@@ -19,8 +19,7 @@ from playsound import playsound
 import seaborn as sns
 
 import sys
-sys.path.append(r"C:\Users\Heng2020\OneDrive\Python MyLib\Python MyLib 01\03 Modeling")
-import lib03_modeling as ml
+import modeling_tool.utils_ml as ml
 
 
 def output_time(t_in_sec,replay ="Time spend:"):

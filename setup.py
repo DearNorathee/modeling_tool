@@ -7,7 +7,7 @@ setup(
     version="0.1.1",
     packages=find_packages(),
     license="MIT",
-    install_requires=["scikit-learn","torch"],
+    install_requires=["scikit-learn"],
 
     # example
     # install_requires=['pandas>=1.0',

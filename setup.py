@@ -7,7 +7,7 @@ setup(
     version="0.1.1",
     packages=find_packages(),
     license="MIT",
-    install_requires=["scikit-learn"],
+    install_requires=["scikit-learn","lightgbm","xgboost"],
 
     # example
     # install_requires=['pandas>=1.0',

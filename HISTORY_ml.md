@@ -1,5 +1,7 @@
 # History
-
+## 0.1.2
+### Fixed Dependecies 
+    - Added xgboost, lightgbm
 ## 0.1.1
 ### Fixed 
     - Fixed internal import issues

@@ -4,6 +4,7 @@ Created on Mon Mar 11 11:00:20 2024
 
 @author: Heng2020
 """
+import inspect
 from dataclasses import dataclass, field
 from typing import Any, Literal
 import numpy as np
@@ -84,4 +85,11 @@ class AutoHyperTuner():
         pass
     def get_all_param_metrics(self):
         pass
+
+
+# prevent showing many objects from import when importing this module
+# from typing import *
+# will that exclude my class?
+__all__ = [name for name, obj in globals().items() 
+           if inspect.isfunction(obj) and not name.startswith('_')]
     

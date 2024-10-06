@@ -16,10 +16,10 @@ def test_upsampling():
         ,'car':4
         }
     expect_count = {
-        'real estate':1128
-        ,'life insurance':846
-        ,'no known property':564
-        ,'car':282
+        'real estate':282
+        ,'life insurance':564
+        ,'no known property':846
+        ,'car':1128
         }
     X_train_oversampled, y_train_oversampled = upsampling(X_data,y_data,strategy=strategy)
     actual_count = ds.value_counts(y_train_oversampled, return_type=dict)

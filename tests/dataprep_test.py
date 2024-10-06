@@ -67,6 +67,12 @@ def test_upsampling_2():
         0: 519
     }
 
+    # this should throw an error
+    strategy5 = {
+        'one': 0.5,
+        'two': 0.5
+    }
+
     X_train_oversampled1, y_train_oversampled1 = upsampling(X_data,y_data,strategy=strategy1)
     actual_counts1 = ds.value_counts(y_train_oversampled1, return_type=dict)
     X_train_oversampled2, y_train_oversampled2 = upsampling(X_data,y_data,strategy=strategy2)
@@ -75,6 +81,11 @@ def test_upsampling_2():
     actual_counts3 = ds.value_counts(y_train_oversampled3, return_type=dict)
     X_train_oversampled4, y_train_oversampled4 = upsampling(X_data,y_data,strategy=strategy4)
     actual_counts4 = ds.value_counts(y_train_oversampled4,return_type=dict)
+
+    try:
+        X_train_oversampled5, y_train_oversampled5 = upsampling(X_data,y_data,strategy=strategy5)
+    except Exception as err05:
+        assert isinstance(err05, ValueError)
 
     assert actual_counts1 == expect_count1, inp.assert_message(actual_counts1,expect_count1)
     assert actual_counts2 == expect_count2, inp.assert_message(actual_counts2,expect_count2)

@@ -8,7 +8,7 @@ setup(
     packages=find_packages(),
     license="MIT",
     install_requires=["scikit-learn","lightgbm","xgboost"],
-
+    python_requires='>=3.10.0',
     # example
     # install_requires=['pandas>=1.0',
     # 'scipy==1.1',

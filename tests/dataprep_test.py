@@ -16,3 +16,5 @@ def test_upsampling():
     
     X_train_oversampled, y_train_oversampled = upsampling(X_data,y_data,strategy=strategy)
     print()
+
+test_upsampling()

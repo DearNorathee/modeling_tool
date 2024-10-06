@@ -4,10 +4,15 @@ setup(
     author= "Dear Norathee",
     description="the extension of sklearn to help the your modeling code becomes more concise with common useful tool for modeling",
     name="modeling_tool",
-    version="0.1.2rc2",
+    version="0.1.3rc1",
     packages=find_packages(),
     license="MIT",
-    install_requires=["scikit-learn","lightgbm","xgboost"],
+    install_requires=[
+        "scikit-learn",
+        "lightgbm",
+        "xgboost",
+        "imblearn"
+        ],
     python_requires='>=3.10.0',
     extras_require={
         'torch': ['torch>=1.0']  # Optional torch dependency

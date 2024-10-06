@@ -150,21 +150,21 @@ def test_smote_upsampling():
     drop_cols = ["policy_bind_date","incident_location"]
     X_data_drop = X_data.drop(columns = drop_cols)
     X_data_drop = X_data_drop.fillna('Missing')
-    X_train_oversampled1, y_train_oversampled1 = smote_upsampling(X_data_drop,y_data,strategy=strategy1, concat=False)
+    X_train_oversampled1, y_train_oversampled1 = smote_nc_upsampling(X_data_drop,y_data,strategy=strategy1, concat=False)
     actual_counts1 = ds.value_counts(y_train_oversampled1, return_type=dict)
-    X_train_oversampled2, y_train_oversampled2 = smote_upsampling(X_data_drop,y_data,strategy=strategy2, concat=False)
+    X_train_oversampled2, y_train_oversampled2 = smote_nc_upsampling(X_data_drop,y_data,strategy=strategy2, concat=False)
     actual_counts2 = ds.value_counts(y_train_oversampled2, return_type=dict)
-    X_train_oversampled3, y_train_oversampled3 = smote_upsampling(X_data_drop,y_data,strategy=strategy3, concat=False)
+    X_train_oversampled3, y_train_oversampled3 = smote_nc_upsampling(X_data_drop,y_data,strategy=strategy3, concat=False)
     actual_counts3 = ds.value_counts(y_train_oversampled3, return_type=dict)
-    X_train_oversampled4, y_train_oversampled4 = smote_upsampling(X_data_drop,y_data,strategy=strategy4, concat=False)
+    X_train_oversampled4, y_train_oversampled4 = smote_nc_upsampling(X_data_drop,y_data,strategy=strategy4, concat=False)
     actual_counts4 = ds.value_counts(y_train_oversampled4,return_type=dict)
 
     try:
-        X_train_oversampled5, y_train_oversampled5 = smote_upsampling(X_data,y_data,strategy=strategy5)
+        X_train_oversampled5, y_train_oversampled5 = smote_nc_upsampling(X_data,y_data,strategy=strategy5)
     except Exception as err05:
         assert isinstance(err05, ValueError)
     
-    data_concat06 = smote_upsampling(X_data,y_data,strategy=strategy4, concat=True)
+    data_concat06 = smote_nc_upsampling(X_data,y_data,strategy=strategy4, concat=True)
     
 
     assert actual_counts1 == expect_count1, inp.assert_message(actual_counts1,expect_count1)

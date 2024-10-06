@@ -126,7 +126,7 @@ def upsampling(
     else:
         return (X_train_oversampled, y_train_oversampled)
 
-def smote_upsampling(
+def smote_nc_upsampling(
         X_df: pd.DataFrame, 
         y_series: pd.Series, 
         strategy: Literal["equal"] | Dict[Union[str, int, float], float] = 'equal', 

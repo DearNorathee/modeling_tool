@@ -73,24 +73,30 @@ def test_upsampling_2():
         'two': 0.5
     }
 
-    X_train_oversampled1, y_train_oversampled1 = upsampling(X_data,y_data,strategy=strategy1)
+    X_train_oversampled1, y_train_oversampled1 = upsampling(X_data,y_data,strategy=strategy1, concat=False)
     actual_counts1 = ds.value_counts(y_train_oversampled1, return_type=dict)
-    X_train_oversampled2, y_train_oversampled2 = upsampling(X_data,y_data,strategy=strategy2)
+    X_train_oversampled2, y_train_oversampled2 = upsampling(X_data,y_data,strategy=strategy2, concat=False)
     actual_counts2 = ds.value_counts(y_train_oversampled2, return_type=dict)
-    X_train_oversampled3, y_train_oversampled3 = upsampling(X_data,y_data,strategy=strategy3)
+    X_train_oversampled3, y_train_oversampled3 = upsampling(X_data,y_data,strategy=strategy3, concat=False)
     actual_counts3 = ds.value_counts(y_train_oversampled3, return_type=dict)
-    X_train_oversampled4, y_train_oversampled4 = upsampling(X_data,y_data,strategy=strategy4)
+    X_train_oversampled4, y_train_oversampled4 = upsampling(X_data,y_data,strategy=strategy4, concat=False)
     actual_counts4 = ds.value_counts(y_train_oversampled4,return_type=dict)
 
     try:
         X_train_oversampled5, y_train_oversampled5 = upsampling(X_data,y_data,strategy=strategy5)
     except Exception as err05:
         assert isinstance(err05, ValueError)
+    
+    data_concat06 = upsampling(X_data,y_data,strategy=strategy4, concat=True)
+    
 
     assert actual_counts1 == expect_count1, inp.assert_message(actual_counts1,expect_count1)
     assert actual_counts2 == expect_count2, inp.assert_message(actual_counts2,expect_count2)
     assert actual_counts3 == expect_count3, inp.assert_message(actual_counts3,expect_count3)
     assert actual_counts4 == expect_count4, inp.assert_message(actual_counts4,expect_count4)
+    assert isinstance(data_concat06,pd.DataFrame)
+    # check if column of the last column is still the same
+    assert data_concat06.columns[-1] == y_name
     print()
 
 test_upsampling_2()

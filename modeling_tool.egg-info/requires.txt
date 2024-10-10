@@ -1,3 +1,7 @@
 scikit-learn
 lightgbm
 xgboost
+imblearn
+
+[torch]
+torch>=1.0

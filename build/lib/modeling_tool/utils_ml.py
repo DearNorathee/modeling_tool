@@ -16,23 +16,29 @@ import os
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
-import torch
 import warnings
+# extra packages
+try:
+    import torch
+except ImportError:
+    torch = None
 
 def check_gpu(verbose = 1):
-    
-    num_gpus = torch.cuda.device_count()
+    if torch is not None:
+        num_gpus = torch.cuda.device_count()
 
-    if num_gpus > 0:
-        if verbose >= 1:
-            print(f"Number of GPUs available: {num_gpus}")
-        for i in range(num_gpus):
+        if num_gpus > 0:
             if verbose >= 1:
-                print(f"GPU {i}: {torch.cuda.get_device_name(i)}")
+                print(f"Number of GPUs available: {num_gpus}")
+            for i in range(num_gpus):
+                if verbose >= 1:
+                    print(f"GPU {i}: {torch.cuda.get_device_name(i)}")
+        else:
+            if verbose >= 1:
+                print("No GPU available.")
+        return num_gpus
     else:
-        if verbose >= 1:
-            print("No GPU available.")
-    return num_gpus
+        raise ImportError(f"Please install torch to use 'check_gpu'")
 
 def create_result_df(X,y_actual,y_predict):
     df_result = X.copy()

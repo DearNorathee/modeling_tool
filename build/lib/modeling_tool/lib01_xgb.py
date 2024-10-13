@@ -299,7 +299,10 @@ def xgb_DTrain_Tune(
     if print_time:
         output_time(t01_02)
     if alarm:
-        playsound(sound_path)
+        try:
+            playsound(sound_path)
+        except:
+            pass
     if draw_graph:
         sns.lineplot(x=param_test_name, y='RMSE',data=out_df)
     return out_df

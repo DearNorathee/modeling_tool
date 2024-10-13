@@ -11,7 +11,8 @@ setup(
         "scikit-learn",
         "lightgbm",
         "xgboost",
-        "imblearn"
+        "imblearn",
+        "playsound"
         ],
     python_requires='>=3.10.0',
     extras_require={

@@ -39,7 +39,7 @@ def upsampling(
     """
     
     if not isinstance(y_series, pd.Series):
-        raise Exception(f"Make sure that y_series is pd.Series type. Currently it's {type(y_series)}")
+        raise TypeError(f"Make sure that y_series is pd.Series type. Currently it's {type(y_series)}")
 
     np.random.seed(random_state)
 
@@ -163,7 +163,7 @@ def smote_nc_upsampling(
     """
     
     if not isinstance(y_series, pd.Series):
-        raise Exception(f"Make sure that y_series is pd.Series type. Currently it's {type(y_series)}")
+        raise TypeError(f"Make sure that y_series is pd.Series type. Currently it's {type(y_series)}")
     
     if verbose == 1:
         print("Before upsampling: ")

@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from typing import Union
+from typing import Union, Literal, Any
 
 def plot_cat_metric_rank(y_prob, y_label, positive_label=1):
     import matplotlib.pyplot as plt
@@ -189,7 +189,7 @@ def cat_threshold_plot(metric_df: pd.DataFrame, bar_alpha = 0.3):
 def cal_cat_metrics(
         pred_actual: Union[list, pd.Series]
         ,pred_prob: Union[list, pd.Series]
-        ,thresholds: List[float] = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+        ,thresholds: list[float] = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
         ,positive_class: Union[list,str] = 1) -> pd.DataFrame:
     from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
     """
@@ -238,3 +238,89 @@ def cal_cat_metrics(
     # Convert the metrics list to a DataFrame for display
     metrics_df = pd.DataFrame(metrics)
     return metrics_df
+
+def cal_rank_cat_metric_02(
+        y_actual: pd.DataFrame
+        ,y_pred_prob_dict: dict[str,pd.Series|pd.DataFrame]
+        ,positive_label=1
+        ) -> dict[str,pd.DataFrame]:
+    from tqdm import tqdm
+    out_dict_of_df: dict[str,pd.DataFrame] = {}
+    
+    # for model, y_pred_prob in tqdm(y_pred_prob_dict.items(),colour="YELLOW", leave=True,desc="Creating rank metric"):
+    for model, y_pred_prob in y_pred_prob_dict.items(): 
+        out_dict_of_df[model] = cal_rank_cat_metric(y_actual, y_pred_prob,positive_label=positive_label)
+    return out_dict_of_df
+
+
+def cat_rank_plot_temp01(
+        metric_df:pd.DataFrame
+        ,metric:Literal["precision","recall","accuracy","f1"] = "precision"
+        ,title:str|None = None
+        ,max_n_predictions: int|None = None
+        ):
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(8, 5))
+
+    if title is None:
+        title:str = f'{metric} vs N_predictions'
+    plt.plot(metric_df['N_predictions'], metric_df[metric], label=metric)
+
+    # Set axis labels
+    plt.xlabel('N_predictions')
+    plt.ylabel(metric)
+
+    # Set y-axis limits
+    plt.ylim(0, 1.2)
+
+    # Set y-axis limits
+    plt.xlim(0, max_n_predictions)
+
+    # Add a grid and legend
+    plt.grid(True)
+    plt.legend()
+
+    # Show the plot
+    plt.title(title)
+    plt.show()
+
+def cat_rank_plot_temp02(
+        metric_df_dict: dict[str, pd.DataFrame],  # Dictionary of DataFrames for different models
+        metric: Literal["precision", "recall", "accuracy", "f1"] = "precision",
+        title: str | None = None,
+        max_n_predictions: int | None = None
+    ):
+    import matplotlib.pyplot as plt
+    plt.figure(figsize=(10, 6))  # Set the figure size
+
+    # Set default title if not provided
+    if title is None:
+        title = f'{metric} vs N_predictions (Comparison)'
+
+    # Loop through the dictionary to plot each model
+    for model_name, metric_df in metric_df_dict.items():
+        print(model_name)
+        plt.plot(
+            metric_df['N_predictions'], 
+            metric_df[metric], 
+            label=model_name  # Use the key (model name) as the label
+        )
+
+    # Set axis labels
+    plt.xlabel('N_predictions')
+    plt.ylabel(metric)
+
+    # Set y-axis limits
+    plt.ylim(0, 1.2)
+
+    # Set x-axis limits if specified
+    if max_n_predictions is not None:
+        plt.xlim(0, max_n_predictions)
+
+    # Add grid, legend, and title
+    plt.grid(True)
+    plt.legend(title="Models")
+    plt.title(title)
+
+    # Show the plot
+    plt.show()
